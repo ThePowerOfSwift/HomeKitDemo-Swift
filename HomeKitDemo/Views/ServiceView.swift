@@ -48,6 +48,10 @@ class ServiceView: UIView {
                 if let _ = characteristic.value as? Int {
                     view = SliderView(title: title, with: characteristic)
                 }
+            } else if metadata.format == HMCharacteristicMetadataFormatFloat {
+                if let _ = characteristic.value as? Float64 {
+                    view = TemperatureView(title: title, characteristic: characteristic)
+                }
             }
             if let v = view {
                 stackView.addArrangedSubview(v)
@@ -55,12 +59,6 @@ class ServiceView: UIView {
                     make.height.equalTo(40.0)
                 }
             }
-//            characteristic.enableNotification(true) { error in
-//                guard error == nil else {
-//                    print("Something went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
-//                    return
-//                }
-//            }
         }
     }
 }

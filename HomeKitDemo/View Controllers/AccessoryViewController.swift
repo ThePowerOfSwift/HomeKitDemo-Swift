@@ -23,8 +23,9 @@ class AccessoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ghostWhite
-        setupViews()
-        layout()
+//        setupViews()
+        accessory.services.forEach { stackView.addArrangedSubview(ServiceView(service: $0)) }
+         layout()
     }
 }
 
